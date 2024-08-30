@@ -1,6 +1,6 @@
 # coolapp
 
-A new Flutter project.
+A new Flutter project that I used to learn flutter.
 
 ## Getting Started
 
