@@ -37,7 +37,10 @@ class _MyAppState extends State<MyApp> {
   void updateColorList() {
     setState(() {
       for (int i = 0; i < randomColorList.length; i++) {
-        randomColorList[i] = randomColor();
+        int x = 12;
+        int y = Random().nextInt(3);
+        randomColorList[i][y+2] = (randomColorList[i][y+2] + x) % 255;
+        randomColorList[i][0] = Color.fromARGB(randomColorList[i][1], randomColorList[i][2], randomColorList[i][3], randomColorList[i][4]);
       }
     });
   }
