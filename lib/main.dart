@@ -29,15 +29,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    randomColorList = generateRandomColorList();
-  }
-
-  List generateRandomColorList() {
-    List colorList = [];
     for (int i = 0; i < 10; i++) {
-      colorList.add(randomColor());
+      randomColorList.add(randomColor());
     }
-    return colorList;
   }
 
   void updateColorList() {
@@ -58,11 +52,12 @@ class _MyAppState extends State<MyApp> {
         ),
         body: ListView.builder(
           itemBuilder: (_, index) {
-            randomColorList[index] = randomColor();
+            if (randomColorList.length <= index) {
+              randomColorList.add(randomColor());
+            }
             var colorData = randomColorList[index];
             return Container(
               color: colorData[0],
-              height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Center(
                 child: Column(
