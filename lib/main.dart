@@ -16,6 +16,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List randomColorList = [];
+  int maxLength = 25;
 
   List randomColor() {
     var random = Random();
@@ -36,6 +37,12 @@ class _MyAppState extends State<MyApp> {
 
   void updateColorList() {
     setState(() {
+
+      if (randomColorList.length == maxLength) {
+        maxLength += 1;
+        randomColorList.add(randomColor());
+      }
+
       for (int i = 0; i < randomColorList.length; i++) {
         int x = 12;
         int y = Random().nextInt(3);
@@ -55,9 +62,15 @@ class _MyAppState extends State<MyApp> {
         ),
         body: ListView.builder(
           itemBuilder: (_, index) {
+
+            if (index >= maxLength) {
+              index = index % maxLength;
+            }
+
             if (randomColorList.length <= index) {
               randomColorList.add(randomColor());
             }
+
             var colorData = randomColorList[index];
             return Container(
               color: colorData[0],
